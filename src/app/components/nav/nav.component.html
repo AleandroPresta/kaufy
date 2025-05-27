@@ -5,7 +5,14 @@
         >
             Kaufy
         </h2>
-        <app-icon-group></app-icon-group>
+        <app-icon-group
+            (searchQuery)="searchQuery($event)"
+            (invalidQuery)="invalidQuery()"
+        ></app-icon-group>
     </div>
-    <app-search-bar class="sm:hidden"></app-search-bar>
+    <app-search-bar
+        (invalidQuery)="invalidQuery()"
+        (searchQuery)="searchQuery($event)"
+        class="sm:hidden"
+    ></app-search-bar>
 </div>
