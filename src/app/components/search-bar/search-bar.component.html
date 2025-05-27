@@ -2,7 +2,8 @@
     <label class="flex flex-col min-w-40 h-12 w-full">
         <div class="flex w-full flex-1 items-stretch rounded-xl h-full">
             <div
-                class="text-[#49749c] flex border-none bg-[#e7edf4] items-center justify-center pl-4 rounded-l-xl border-r-0"
+                (click)="search()"
+                class="text-[#49749c] flex border-none bg-[#e7edf4] items-center justify-center pl-4 rounded-l-xl border-r-0 hover:cursor-pointer"
                 data-icon="MagnifyingGlass"
                 data-size="24px"
                 data-weight="regular"
@@ -20,6 +21,8 @@
                 </svg>
             </div>
             <input
+                id="searchInput"
+                (keyup.enter)="search()"
                 placeholder="Search for products"
                 class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0d151c] focus:outline-0 focus:ring-0 border-none bg-[#e7edf4] focus:border-none h-full placeholder:text-[#49749c] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal"
                 value=""
