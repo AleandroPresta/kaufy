@@ -14,8 +14,8 @@ export class IconGroupComponent {
     @Output() invalidQuery: EventEmitter<void> = new EventEmitter<void>();
     searchTerm: string = '';
 
-    onSearchQuery(): void {
-        this.searchQuery.emit(this.searchTerm);
+    onSearchQuery(event: any): void {
+        this.searchQuery.emit(event);
     }
 
     onInvalidQuery(): void {

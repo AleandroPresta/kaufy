@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { NavComponent } from './components/nav/nav.component';
-import { SonnerPreviewComponent } from './components/spartan-sonner/spartan-sonner.component';
+import { ShopComponent } from './components/shop/shop.component';
 
 @Component({
     selector: 'app-root',
-    imports: [RouterOutlet, NavComponent, SonnerPreviewComponent],
+    imports: [ShopComponent],
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
 })

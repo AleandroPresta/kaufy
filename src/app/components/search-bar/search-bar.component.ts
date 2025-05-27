@@ -15,10 +15,8 @@ export class SearchBarComponent {
 
     search(): void {
         if (this.isInvalid(this.searchTerm)) {
-            console.log('[search-bar] Invalid search query');
             this.invalidQuery.emit();
         } else {
-            console.log('[search-bar] Valid search query:', this.searchTerm);
             this.searchQuery.emit(this.searchTerm);
             this.searchTerm = ''; // Clear the search term after emitting
         }

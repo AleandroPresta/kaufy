@@ -8,7 +8,7 @@ import { toast } from 'ngx-sonner';
     imports: [HlmToasterComponent, HlmButtonDirective],
     templateUrl: './spartan-sonner.component.html',
 })
-export class SonnerPreviewComponent {
+export class SpartanSonnerComponent {
     showToast() {
         toast('Event has been created', {
             description: 'Sunday, December 03, 2023 at 9:00 AM',

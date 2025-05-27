@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { IconGroupComponent } from './icon-group/icon-group.component';
 
@@ -9,10 +9,16 @@ import { IconGroupComponent } from './icon-group/icon-group.component';
     styleUrl: './nav.component.css',
 })
 export class NavComponent {
-    searchQuery(event: string | undefined): void {
-        console.log('Search Query:', event);
+    @Output() searchQuery: EventEmitter<string | undefined> = new EventEmitter<
+        string | undefined
+    >();
+    @Output() invalidQuery: EventEmitter<void> = new EventEmitter<void>();
+
+    onSearchQuery(event: any): void {
+        this.searchQuery.emit(event);
     }
-    invalidQuery(): void {
-        console.log('Invalid Query');
+
+    onInvalidQuery(): void {
+        this.invalidQuery.emit();
     }
 }

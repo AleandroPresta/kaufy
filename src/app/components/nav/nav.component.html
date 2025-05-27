@@ -6,13 +6,13 @@
             Kaufy
         </h2>
         <app-icon-group
-            (searchQuery)="searchQuery($event)"
-            (invalidQuery)="invalidQuery()"
+            (searchQuery)="onSearchQuery($event)"
+            (invalidQuery)="onInvalidQuery()"
         ></app-icon-group>
     </div>
     <app-search-bar
-        (invalidQuery)="invalidQuery()"
-        (searchQuery)="searchQuery($event)"
+        (searchQuery)="onSearchQuery($event)"
+        (invalidQuery)="onInvalidQuery()"
         class="sm:hidden"
     ></app-search-bar>
 </div>
