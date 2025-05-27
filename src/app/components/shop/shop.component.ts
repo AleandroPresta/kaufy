@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavComponent } from '../nav/nav.component';
 import { SpartanSonnerComponent } from '../spartan-sonner/spartan-sonner.component';
 
@@ -9,11 +9,13 @@ import { SpartanSonnerComponent } from '../spartan-sonner/spartan-sonner.compone
     styleUrl: './shop.component.css',
 })
 export class ShopComponent {
+    @ViewChild(SpartanSonnerComponent) toaster!: SpartanSonnerComponent;
+
     onSearchQuery(event: any): void {
-        console.log('[shop] Search Query:', event);
+        console.log('[shop] Search Query:', event); // TODO handle search query
     }
 
     onInvalidQuery(): void {
-        console.log('[shop] Invalid Query');
+        this.toaster.showToast();
     }
 }
