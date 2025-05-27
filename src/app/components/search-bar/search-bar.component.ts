@@ -1,4 +1,10 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import {
+    Component,
+    Output,
+    EventEmitter,
+    ViewChild,
+    ElementRef,
+} from '@angular/core';
 
 @Component({
     selector: 'app-search-bar',
@@ -10,21 +16,10 @@ export class SearchBarComponent {
     @Output() searchQuery: EventEmitter<string> = new EventEmitter<string>();
 
     search(): void {
-        const query = (
-            document.getElementById('searchInput') as HTMLInputElement
-        ).value;
-        if (query) {
-            console.log('Search query:', query);
-            this.searchQuery.emit(query);
-            // Clear the input field after emitting the event
-            (document.getElementById('searchInput') as HTMLInputElement).value =
-                '';
-        } else {
-            this.invalidQuery();
-        }
+        console.log('Search initiated');
     }
 
-    invalidQuery(): void {
+    notifyInvalidQuery(): void {
         console.log('Invalid search query');
     }
 }
