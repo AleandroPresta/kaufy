@@ -1,5 +1,6 @@
 # Features
 
--   User authentication and authorization
--   Product catalog with search and filter options
--   Admin dashboard using sanity.io
+- User authentication and authorization
+- Product catalog with search and filter options
+- Admin dashboard using sanity.io
+- Shopping cart functionality
