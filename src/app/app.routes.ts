@@ -8,6 +8,7 @@ export const routes: Routes = [
     { path: 'shop', component: ShopComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'cart', component: CartComponent },
+
     // Fallback route
     { path: '**', redirectTo: '/shop' },
 ];
