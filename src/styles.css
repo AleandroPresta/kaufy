@@ -2,8 +2,26 @@
 @import 'tailwindcss';
 
 :root {
-    --color-primary-dark: rgb(83, 125, 93);
-    --color-primary: rgb(115, 148, 107);
-    --color-primary-light: rgb(158, 188, 138);
-    --color-accent: rgb(210, 208, 160);
+    /* Primary Colors - Blue Palette */
+    --color-primary-100: #ebf8ff;
+    --color-primary-300: #4299e1;
+    --color-primary-500: #2b6cb0;
+    --color-primary-700: #1a365d;
+
+    /* Accent Colors - Warm Coral/Orange */
+    --color-accent-300: #f6ad55;
+    --color-accent-500: #ed8936;
+    --color-accent-700: #c05621;
+
+    /* Neutral Tones */
+    --color-neutral-100: #f7fafc;
+    --color-neutral-300: #e2e8f0;
+    --color-neutral-500: #718096;
+    --color-neutral-700: #2d3748;
+
+    /* Feedback States */
+    --color-success: #38a169;
+    --color-warning: #ecc94b;
+    --color-error: #e53e3e;
+    --color-info: #3182ce;
 }

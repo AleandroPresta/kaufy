@@ -1,10 +1,19 @@
-<div class="bg-slate-50 md:px-5">
-    <div class="flex items-center bg-slate-50 p-4 pb-2 justify-between">
-        <h2
-            class="text-[#0d151c] text-lg font-bold leading-tight tracking-[-0.015em] flex-0 text-center"
-        >
-            Kaufy
-        </h2>
+<div class="bg-[var(--color-primary-700)] md:px-5">
+    <div
+        class="flex items-center bg-[var(--color-primary-700)] p-4 pb-2 justify-between"
+    >
+        <div class="flex items-center justify-center gap-5">
+            <img
+                src="https://replicate.delivery/pbxt/onXfKhck4CW8bCF4riNfRitQ7Ne2vFMnxoMVbV4axVA64ekDB/out.png"
+                alt="Kaufy Logo"
+                class="w-12 h-12 rounded-full mx-auto mt-2"
+            />
+            <h2
+                class="text-[var(--color-accent-300)] text-3xl font-bold leading-tight tracking-[-0.015em] flex-0 text-center"
+            >
+                Kaufy
+            </h2>
+        </div>
         <app-icon-group
             (searchQuery)="onSearchQuery($event)"
             (invalidQuery)="onInvalidQuery()"
