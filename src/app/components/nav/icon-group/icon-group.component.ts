@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { SearchBarComponent } from '../../search-bar/search-bar.component';
+import { HlmButtonDirective } from '@spartan-ng/ui-button-helm';
 
 @Component({
     selector: 'app-icon-group',
