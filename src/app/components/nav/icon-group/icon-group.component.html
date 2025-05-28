@@ -5,10 +5,11 @@
         class="hidden sm:block"
     ></app-search-bar>
     <button
-        class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 bg-transparent text-[#101518] gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0"
+        class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-8 w-8 bg-transparent text-[var(--color-neutral-100)] hover:bg-[var(--color-primary-500)] transition-colors duration-200 gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0"
+        [routerLink]="['/profile']"
     >
         <div
-            class="text-[#101518]"
+            class="text-[var(--color-neutral-100)]"
             data-icon="UserCircle"
             data-size="24px"
             data-weight="regular"
@@ -27,10 +28,11 @@
         </div>
     </button>
     <button
-        class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 bg-transparent text-[#0d151c] gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0"
+        class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-8 w-8 bg-transparent text-[var(--color-neutral-100)] hover:bg-[var(--color-primary-500)] transition-colors duration-200 gap-2 text-base font-bold leading-normal tracking-[0.015em] min-w-0 p-0"
+        [routerLink]="['/cart']"
     >
         <div
-            class="text-[#0d151c]"
+            class="text-[var(--color-neutral-100)]"
             data-icon="ShoppingCart"
             data-size="24px"
             data-weight="regular"

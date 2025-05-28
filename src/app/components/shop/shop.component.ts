@@ -1,10 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavComponent } from '../nav/nav.component';
 import { SpartanSonnerComponent } from '../spartan-sonner/spartan-sonner.component';
+import { ShopListComponent } from './shop-list/shop-list.component';
 
 @Component({
     selector: 'app-shop',
-    imports: [NavComponent, SpartanSonnerComponent],
+    imports: [NavComponent, SpartanSonnerComponent, ShopListComponent],
     templateUrl: './shop.component.html',
     styleUrl: './shop.component.css',
 })

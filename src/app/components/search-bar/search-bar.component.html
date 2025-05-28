@@ -1,9 +1,11 @@
 <div class="px-4 py-3">
     <label class="flex flex-col min-w-40 h-12 w-full">
-        <div class="flex w-full flex-1 items-stretch rounded-xl h-full">
+        <div
+            class="flex w-full flex-1 items-stretch rounded-xl h-full hover:bg-[var(--color-accent-300)] transition-colors duration-200"
+        >
             <div
                 (click)="search()"
-                class="text-[#49749c] flex border-none bg-[#e7edf4] items-center justify-center pl-4 rounded-l-xl border-r-0 hover:cursor-pointer"
+                class="flex border-none items-center justify-center pl-4 rounded-l-xl border-r-0 hover:cursor-pointer text-[var(--color-primary-700)] bg-[var(--color-neutral-100)]"
                 data-icon="MagnifyingGlass"
                 data-size="24px"
                 data-weight="regular"
@@ -24,7 +26,7 @@
                 [(ngModel)]="searchTerm"
                 (keyup.enter)="search()"
                 placeholder="Search for products"
-                class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0d151c] focus:outline-0 focus:ring-0 border-none bg-[#e7edf4] focus:border-none h-full placeholder:text-[#49749c] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal"
+                class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl focus:outline-0 focus:ring-0 border-none focus:border-none h-full placeholder:text-[var(--color-neutral-500)] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal text-[var(--color-primary-700)] bg-[var(--color-neutral-100)]"
             />
         </div>
     </label>
