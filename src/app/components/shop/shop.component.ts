@@ -1,11 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavComponent } from '../nav/nav.component';
 import { SpartanSonnerComponent } from '../spartan-sonner/spartan-sonner.component';
-import { RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
     selector: 'app-shop',
-    imports: [NavComponent, SpartanSonnerComponent, RouterOutlet],
+    imports: [NavComponent, SpartanSonnerComponent],
     templateUrl: './shop.component.html',
     styleUrl: './shop.component.css',
 })
