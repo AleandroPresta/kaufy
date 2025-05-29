@@ -43,4 +43,3 @@ Thumbs.db
 
 # The test backend server
 /backend/*
-.env
