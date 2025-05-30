@@ -4,9 +4,23 @@ import {
     trigger,
     transition,
     animate,
-    sequence,
     group,
 } from '@angular/animations';
+
+const ENTER_START_STYLE = style({
+    opacity: 1,
+    transform: 'translateX(100%)',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    width: '100%',
+});
+
+const ENTER_ANIMATION = animate(
+    '0.7s ease',
+    style({ opacity: 1, transform: 'translateX(0%)' })
+);
 
 // This animation trigger is used for route transitions with loading step
 export const routeTransition = trigger('routeTransition', [
@@ -14,38 +28,20 @@ export const routeTransition = trigger('routeTransition', [
     transition('* => *', [
         // Set up the container to allow absolute positioning
         style({ position: 'relative' }),
-
-        // 1. Style reset for entering and leaving elements
-        query(
-            ':enter, :leave',
-            style({
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                width: '100%',
-            }),
-            { optional: true }
-        ),
-
-        // 2. Initial style for the entering element
-        query(
-            ':enter',
-            [
-                style({
-                    opacity: 1,
-                    transform: 'translateX(100%)',
-                }),
-            ],
-            { optional: true }
-        ),
         group([
-            // 3. Animate the leaving element
+            // Animate the leaving element
             query(
                 ':leave',
                 [
+                    style({
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        width: '100%',
+                    }),
                     animate(
-                        '0.2s',
+                        '0.7s ease',
                         style({
                             opacity: 1,
                             transform: 'translateX(-100%)',
@@ -55,19 +51,10 @@ export const routeTransition = trigger('routeTransition', [
                 { optional: true }
             ),
 
-            // 4. Animate the entering element
-            query(
-                ':enter',
-                [
-                    animate(
-                        '0.2s',
-                        style({ opacity: 1, transform: 'translateX(0%)' })
-                    ),
-                ],
-                {
-                    optional: true,
-                }
-            ),
+            //  Animate the entering element
+            query(':enter', [ENTER_START_STYLE, ENTER_ANIMATION], {
+                optional: true,
+            }),
         ]),
     ]),
 ]);
