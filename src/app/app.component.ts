@@ -15,6 +15,4 @@ export class AppComponent {
     title: string = 'kaufy';
     showLoading: boolean = false;
     loadingTime: number = LOADING_TIME;
-
-    constructor() {}
 }

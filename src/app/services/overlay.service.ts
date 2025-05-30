@@ -6,6 +6,7 @@ import {
 } from '@angular/animations';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { LOADING_TIME } from '../../loading-transition';
 
 @Injectable({
     providedIn: 'root',
@@ -22,8 +23,11 @@ export class OverlayService {
         this.createOverlay();
 
         const factory: AnimationFactory = this.builder.build([
-            style({ transform: 'translateX(-100%)' }),
-            animate('500ms ease-in-out', style({ transform: 'translateX(0)' })),
+            style({ opacity: 1, transform: 'translateX(-100%)' }),
+            animate(
+                `${LOADING_TIME}ms ease`,
+                style({ opacity: 1, transform: 'translateX(0)' })
+            ),
         ]);
 
         const player = factory.create(this.overlayElement!);
@@ -31,9 +35,10 @@ export class OverlayService {
             this.router.navigateByUrl(targetRoute).then(() => {
                 // Optional: animate exit
                 const exitFactory = this.builder.build([
+                    style({ opacity: 1, transform: 'translateX(0)' }),
                     animate(
-                        '300ms ease-in-out',
-                        style({ transform: 'translateX(100%)' })
+                        `${LOADING_TIME}ms ease`,
+                        style({ opacity: 1, transform: 'translateX(100%)' })
                     ),
                 ]);
                 const exitPlayer = exitFactory.create(this.overlayElement!);
