@@ -5,6 +5,7 @@ import {
     transition,
     animate,
     sequence,
+    group,
 } from '@angular/animations';
 
 // This animation trigger is used for route transitions with loading step
@@ -38,33 +39,35 @@ export const routeTransition = trigger('routeTransition', [
             ],
             { optional: true }
         ),
-        // 3. Animate the leaving element
-        query(
-            ':leave',
-            [
-                animate(
-                    '0.2s',
-                    style({
-                        opacity: 1,
-                        transform: 'translateX(-100%)',
-                    })
-                ),
-            ],
-            { optional: true }
-        ),
+        group([
+            // 3. Animate the leaving element
+            query(
+                ':leave',
+                [
+                    animate(
+                        '0.2s',
+                        style({
+                            opacity: 1,
+                            transform: 'translateX(-100%)',
+                        })
+                    ),
+                ],
+                { optional: true }
+            ),
 
-        // 4. Animate the entering element
-        query(
-            ':enter',
-            [
-                animate(
-                    '0.2s',
-                    style({ opacity: 1, transform: 'translateX(0%)' })
-                ),
-            ],
-            {
-                optional: true,
-            }
-        ),
+            // 4. Animate the entering element
+            query(
+                ':enter',
+                [
+                    animate(
+                        '0.2s',
+                        style({ opacity: 1, transform: 'translateX(0%)' })
+                    ),
+                ],
+                {
+                    optional: true,
+                }
+            ),
+        ]),
     ]),
 ]);
