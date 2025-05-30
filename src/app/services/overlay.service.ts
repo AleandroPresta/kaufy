@@ -4,15 +4,27 @@ import {
     AnimationFactory,
     style,
 } from '@angular/animations';
-import { Injectable } from '@angular/core';
+import {
+    ApplicationRef,
+    ComponentRef,
+    createComponent,
+    EnvironmentInjector,
+    inject,
+    Injectable,
+} from '@angular/core';
 import { Router } from '@angular/router';
+import { OverlayComponent } from '../components/overlay/overlay.component';
 
 @Injectable({
     providedIn: 'root',
 })
 export class OverlayService {
-    private overlayElement: HTMLElement | null = null;
     private loadingTime: number = import.meta.env['NG_APP_LOADING_TIME'];
+
+    private overlayRef!: ComponentRef<OverlayComponent>;
+
+    private appRef = inject(ApplicationRef);
+    private injector = inject(EnvironmentInjector);
 
     constructor(
         private builder: AnimationBuilder,
@@ -22,44 +34,50 @@ export class OverlayService {
     transitionTo(targetRoute: string): void {
         this.createOverlay();
 
-        const factory: AnimationFactory = this.builder.build([
-            style({ opacity: 1, transform: 'translateX(-100%)' }),
-            animate(
-                `${this.loadingTime}ms ease`,
-                style({ opacity: 1, transform: 'translateX(0)' })
-            ),
-        ]);
+        requestAnimationFrame(() => {
+            const factory: AnimationFactory = this.builder.build([
+                style({ opacity: 1, transform: 'translateX(-100%)' }),
+                animate(
+                    `${this.loadingTime}ms ease`,
+                    style({ opacity: 1, transform: 'translateX(0)' })
+                ),
+            ]);
 
-        const player = factory.create(this.overlayElement!);
-        player.onDone(() => {
-            this.router.navigateByUrl(targetRoute).then(() => {
-                // Optional: animate exit
-                const exitFactory = this.builder.build([
-                    style({ opacity: 1, transform: 'translateX(0)' }),
-                    animate(
-                        `${this.loadingTime}ms ease`,
-                        style({ opacity: 1, transform: 'translateX(100%)' })
-                    ),
-                ]);
-                const exitPlayer = exitFactory.create(this.overlayElement!);
-                exitPlayer.onDone(() => this.removeOverlay());
-                exitPlayer.play();
+            const player = factory.create(this.getElement());
+            player.onDone(() => {
+                this.router.navigateByUrl(targetRoute).then(() => {
+                    // Optional: animate exit
+                    const exitFactory = this.builder.build([
+                        style({ opacity: 1, transform: 'translateX(0)' }),
+                        animate(
+                            `${this.loadingTime}ms ease`,
+                            style({ opacity: 1, transform: 'translateX(100%)' })
+                        ),
+                    ]);
+                    const exitPlayer = exitFactory.create(this.getElement());
+                    exitPlayer.onDone(() => this.removeOverlay());
+                    exitPlayer.play();
+                });
             });
-        });
 
-        player.play();
+            player.play();
+        });
     }
 
     private createOverlay() {
-        this.overlayElement = document.createElement('div');
-        this.overlayElement.classList.add('route-overlay');
-        document.body.appendChild(this.overlayElement);
+        this.overlayRef = createComponent(OverlayComponent, {
+            environmentInjector: this.injector,
+        });
+        this.appRef.attachView(this.overlayRef.hostView);
+        document.body.appendChild(this.getElement());
     }
 
     private removeOverlay() {
-        if (this.overlayElement) {
-            this.overlayElement.remove();
-            this.overlayElement = null;
-        }
+        this.appRef.detachView(this.overlayRef.hostView);
+        this.overlayRef.destroy();
+    }
+
+    private getElement(): HTMLElement {
+        return this.overlayRef.location.nativeElement;
     }
 }
