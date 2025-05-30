@@ -1,15 +1,14 @@
-@if (showLoading) {
-    <app-overlay
-        @loadingFade
-        class="fixed top-0 left-0 h-screen w-screen flex items-center justify-center z-50"
-    >
-    </app-overlay>
-}
-
 <!--<div class="router-container" [@routeTransition]="prepareRoute(outlet)">
     <router-outlet #outlet="outlet"></router-outlet>
 </div> -->
 
 <div class="router-container">
+    @if (showLoading) {
+        <app-overlay
+            [@loadingFade]
+            class="fixed top-0 left-0 h-screen w-screen bg-amber-200 flex items-center justify-center z-50"
+        >
+        </app-overlay>
+    }
     <router-outlet #outlet="outlet"></router-outlet>
 </div>

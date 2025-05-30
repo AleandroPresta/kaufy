@@ -13,7 +13,7 @@ export const loadingFade = trigger('loadingFade', [
     transition(':leave', [
         style({ opacity: 1, transform: 'translateX(0)' }),
         animate(
-            `${LOADING_TIME}ms ease`,
+            `${LOADING_TIME}ms ease`, // Make leave animation short for quick fade out
             style({ opacity: 1, transform: 'translateX(100%)' })
         ),
     ]),
