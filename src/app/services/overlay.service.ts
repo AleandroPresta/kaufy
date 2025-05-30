@@ -6,13 +6,13 @@ import {
 } from '@angular/animations';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { LOADING_TIME } from '../../loading-transition';
 
 @Injectable({
     providedIn: 'root',
 })
 export class OverlayService {
     private overlayElement: HTMLElement | null = null;
+    private loadingTime: number = import.meta.env['NG_APP_LOADING_TIME'];
 
     constructor(
         private builder: AnimationBuilder,
@@ -25,7 +25,7 @@ export class OverlayService {
         const factory: AnimationFactory = this.builder.build([
             style({ opacity: 1, transform: 'translateX(-100%)' }),
             animate(
-                `${LOADING_TIME}ms ease`,
+                `${this.loadingTime}ms ease`,
                 style({ opacity: 1, transform: 'translateX(0)' })
             ),
         ]);
@@ -37,7 +37,7 @@ export class OverlayService {
                 const exitFactory = this.builder.build([
                     style({ opacity: 1, transform: 'translateX(0)' }),
                     animate(
-                        `${LOADING_TIME}ms ease`,
+                        `${this.loadingTime}ms ease`,
                         style({ opacity: 1, transform: 'translateX(100%)' })
                     ),
                 ]);
