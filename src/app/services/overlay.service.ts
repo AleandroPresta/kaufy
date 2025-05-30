@@ -35,32 +35,46 @@ export class OverlayService {
         this.createOverlay();
 
         requestAnimationFrame(() => {
-            const factory: AnimationFactory = this.builder.build([
-                style({ opacity: 1, transform: 'translateX(-100%)' }),
-                animate(
-                    `${this.loadingTime}ms ease`,
-                    style({ opacity: 1, transform: 'translateX(0)' })
-                ),
-            ]);
+            // Use setTimeout to ensure Angular processes changes before animation
+            setTimeout(() => {
+                const factory: AnimationFactory = this.builder.build([
+                    style({ opacity: 1, transform: 'translateX(-100%)' }),
+                    animate(
+                        `${this.loadingTime}ms ease`,
+                        style({ opacity: 1, transform: 'translateX(0)' })
+                    ),
+                ]);
 
-            const player = factory.create(this.getElement());
-            player.onDone(() => {
-                this.router.navigateByUrl(targetRoute).then(() => {
-                    // Optional: animate exit
-                    const exitFactory = this.builder.build([
-                        style({ opacity: 1, transform: 'translateX(0)' }),
-                        animate(
-                            `${this.loadingTime}ms ease`,
-                            style({ opacity: 1, transform: 'translateX(100%)' })
-                        ),
-                    ]);
-                    const exitPlayer = exitFactory.create(this.getElement());
-                    exitPlayer.onDone(() => this.removeOverlay());
-                    exitPlayer.play();
+                const player = factory.create(this.getElement());
+                player.onDone(() => {
+                    this.router.navigateByUrl(targetRoute).then(() => {
+                        // Optional: animate exit
+                        // Use setTimeout for exit animation as well
+                        setTimeout(() => {
+                            const exitFactory = this.builder.build([
+                                style({
+                                    opacity: 1,
+                                    transform: 'translateX(0)',
+                                }),
+                                animate(
+                                    `${this.loadingTime}ms ease`,
+                                    style({
+                                        opacity: 1,
+                                        transform: 'translateX(100%)',
+                                    })
+                                ),
+                            ]);
+                            const exitPlayer = exitFactory.create(
+                                this.getElement()
+                            );
+                            exitPlayer.onDone(() => this.removeOverlay());
+                            exitPlayer.play();
+                        }, 0);
+                    });
                 });
-            });
 
-            player.play();
+                player.play();
+            }, 0);
         });
     }
 
