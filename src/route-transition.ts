@@ -14,7 +14,7 @@ export const routeTransition = trigger('routeTransition', [
         // Set up the container to allow absolute positioning
         style({ position: 'relative' }),
 
-        // 1. Set initial styles for both elements
+        // 1. Style reset for entering and leaving elements
         query(
             ':enter, :leave',
             style({
@@ -27,58 +27,44 @@ export const routeTransition = trigger('routeTransition', [
             { optional: true }
         ),
 
-        // 2. Set specific initial styles for entering element (completely hidden)
+        // 2. Initial style for the entering element
         query(
             ':enter',
-            style({
-                opacity: 1,
-                transform: 'translateX(100%)',
-            }),
-            { optional: true }
-        ),
-
-        // 3. Three-phase animation sequence
-        sequence([
-            // Phase 1: Slide out the current page quickly
-            query(
-                ':leave',
-                [
-                    animate(
-                        '250ms ease-in',
-                        style({
-                            opacity: 0,
-                            transform: 'translateX(-50%)',
-                        })
-                    ),
-                ],
-                { optional: true }
-            ),
-
-            // Phase 2: Brief loading pause (loading component shows during this time)
-            // The loading service handles showing/hiding the loading component
-            query(
-                ':enter',
+            [
                 style({
                     opacity: 1,
                     transform: 'translateX(100%)',
                 }),
-                { optional: true }
-            ),
+            ],
+            { optional: true }
+        ),
+        // 3. Animate the leaving element
+        query(
+            ':leave',
+            [
+                animate(
+                    '0.2s',
+                    style({
+                        opacity: 1,
+                        transform: 'translateX(-100%)',
+                    })
+                ),
+            ],
+            { optional: true }
+        ),
 
-            // Phase 3: Slide in the new page smoothly
-            query(
-                ':enter',
-                [
-                    animate(
-                        '350ms ease-out',
-                        style({
-                            opacity: 1,
-                            transform: 'translateX(0)',
-                        })
-                    ),
-                ],
-                { optional: true }
-            ),
-        ]),
+        // 4. Animate the entering element
+        query(
+            ':enter',
+            [
+                animate(
+                    '0.2s',
+                    style({ opacity: 1, transform: 'translateX(0%)' })
+                ),
+            ],
+            {
+                optional: true,
+            }
+        ),
     ]),
 ]);
