@@ -1,0 +1,18 @@
+<div class="flex flex-col gap-3 pb-3">
+    <div
+        class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-xl"
+        style="background-image: url('{{ product.image_url }}')"
+    ></div>
+    <div>
+        <p
+            class="text-[var(--color-neutral-700)] text-base font-medium leading-normal"
+        >
+            {{ product.name }}
+        </p>
+        <p
+            class="text-[var(--color-accent-300)] text-sm font-normal leading-normal"
+        >
+            {{ product.price | currency }}
+        </p>
+    </div>
+</div>
