@@ -13,4 +13,8 @@ export class AppComponent {
     title = 'kaufy';
 
     constructor(protected route: ActivatedRoute) {}
+
+    prepareRoute(outlet: RouterOutlet) {
+        return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+    }
 }

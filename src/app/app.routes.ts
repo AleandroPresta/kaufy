@@ -5,9 +5,9 @@ import { CartComponent } from './components/cart/cart.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/shop', pathMatch: 'full' },
-    { path: 'shop', component: ShopComponent },
-    { path: 'profile', component: ProfileComponent },
-    { path: 'cart', component: CartComponent },
+    { path: 'shop', component: ShopComponent, data: { animation: 'ShopPage' } },
+    { path: 'profile', component: ProfileComponent, data: { animation: 'ProfilePage' } },
+    { path: 'cart', component: CartComponent, data: { animation: 'CartPage' } },
 
     // Fallback route
     { path: '**', redirectTo: '/shop' },
