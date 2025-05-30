@@ -1,10 +1,10 @@
 @if (showLoading) {
-    <div
+    <app-overlay
         @loadingFade
-        class="fixed top-0 left-0 h-screen w-screen bg-gray-500 bg-opacity-70 flex items-center justify-center z-50"
+        class="fixed top-0 left-0 h-screen w-screen flex items-center justify-center z-50"
     >
         Loading...
-    </div>
+    </app-overlay>
 }
 
 <!--<div class="router-container" [@routeTransition]="prepareRoute(outlet)">

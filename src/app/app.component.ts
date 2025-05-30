@@ -7,10 +7,11 @@ import {
 } from '@angular/router';
 import { routeTransition } from '../route-transition';
 import { loadingFade, LOADING_TIME } from '../loading-transition';
+import { OverlayComponent } from './components/overlay/overlay.component';
 
 @Component({
     selector: 'app-root',
-    imports: [RouterOutlet],
+    imports: [RouterOutlet, OverlayComponent],
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
     animations: [routeTransition, loadingFade],
