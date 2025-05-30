@@ -31,7 +31,7 @@ export const routeTransition = trigger('routeTransition', [
         query(
             ':enter',
             style({
-                opacity: 0,
+                opacity: 1,
                 transform: 'translateX(100%)',
             }),
             { optional: true }
@@ -59,7 +59,7 @@ export const routeTransition = trigger('routeTransition', [
             query(
                 ':enter',
                 style({
-                    opacity: 0,
+                    opacity: 1,
                     transform: 'translateX(100%)',
                 }),
                 { optional: true }
