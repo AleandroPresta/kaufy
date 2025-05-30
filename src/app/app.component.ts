@@ -1,6 +1,13 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, RouterOutlet } from '@angular/router';
+import {
+    ActivatedRoute,
+    RouterOutlet,
+    NavigationStart,
+    NavigationEnd,
+    Router,
+} from '@angular/router';
 import { routeTransition } from '../route-transition';
+import { filter } from 'rxjs/operators';
 
 @Component({
     selector: 'app-root',
@@ -12,9 +19,16 @@ import { routeTransition } from '../route-transition';
 export class AppComponent {
     title = 'kaufy';
 
-    constructor(protected route: ActivatedRoute) {}
+    constructor(
+        protected route: ActivatedRoute,
+        private router: Router
+    ) {}
 
     prepareRoute(outlet: RouterOutlet) {
-        return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+        return (
+            outlet &&
+            outlet.activatedRouteData &&
+            outlet.activatedRouteData['animation']
+        );
     }
 }

@@ -4,10 +4,10 @@ import {
     trigger,
     transition,
     animate,
-    group,
+    sequence,
 } from '@angular/animations';
 
-// This animation trigger is used for route transitions
+// This animation trigger is used for route transitions with loading step
 export const routeTransition = trigger('routeTransition', [
     // Apply this animation for any route change
     transition('* => *', [
@@ -27,7 +27,7 @@ export const routeTransition = trigger('routeTransition', [
             { optional: true }
         ),
 
-        // 2. Set specific initial styles for entering element
+        // 2. Set specific initial styles for entering element (completely hidden)
         query(
             ':enter',
             style({
@@ -37,39 +37,40 @@ export const routeTransition = trigger('routeTransition', [
             { optional: true }
         ),
 
-        // 3. Set specific initial styles for leaving element
-        query(
-            ':leave',
-            style({
-                opacity: 1,
-                transform: 'translateX(0)',
-            }),
-            { optional: true }
-        ),
-
-        // 4. Animate both elements simultaneously
-        group([
-            // Animate the leaving element out
+        // 3. Three-phase animation sequence
+        sequence([
+            // Phase 1: Slide out the current page quickly
             query(
                 ':leave',
                 [
                     animate(
-                        '300ms ease-in-out',
+                        '250ms ease-in',
                         style({
                             opacity: 0,
-                            transform: 'translateX(-100%)',
+                            transform: 'translateX(-50%)',
                         })
                     ),
                 ],
                 { optional: true }
             ),
 
-            // Animate the entering element in
+            // Phase 2: Brief loading pause (loading component shows during this time)
+            // The loading service handles showing/hiding the loading component
+            query(
+                ':enter',
+                style({
+                    opacity: 0,
+                    transform: 'translateX(100%)',
+                }),
+                { optional: true }
+            ),
+
+            // Phase 3: Slide in the new page smoothly
             query(
                 ':enter',
                 [
                     animate(
-                        '300ms ease-in-out',
+                        '350ms ease-out',
                         style({
                             opacity: 1,
                             transform: 'translateX(0)',
