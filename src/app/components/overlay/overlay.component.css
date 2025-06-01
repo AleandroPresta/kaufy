@@ -1,0 +1,49 @@
+:host {
+    display: block;
+    position: fixed;
+    top: 0;
+    /* The clip path uses 0.05 to 0.95 for the main content area (0.9 of total width). */
+    /* We want this 0.9 part to correspond to 100vw. */
+    width: calc(100vw / 0.9); /* Approx. 111.11vw */
+    /* Adjust left position so the 100vw clipped content is centered. */
+    /* This means shifting left by the width of the left wave (0.05 of total new width). */
+    left: calc(-0.05 * (100vw / 0.9)); /* Approx. -5.55vw */
+    height: 100vh;
+    z-index: 50;
+    clip-path: url(#overlayClipPath); /* Assumes #overlayClipPath is defined in overlay.component.html */
+}
+
+/* Animation that goes from middle → up → down → back to middle */
+@keyframes middle-up-down {
+    0% {
+        transform: translateY(0);
+    } /* Start at middle */
+    25% {
+        transform: translateY(-20px);
+    } /* Move up */
+    50% {
+        transform: translateY(0);
+    } /* Back to middle */
+    75% {
+        transform: translateY(20px);
+    } /* Move down */
+    100% {
+        transform: translateY(0);
+    } /* Return to middle */
+}
+
+/* Sequential animations - each box starts when previous reaches the top */
+.animate-middle-up-down-1 {
+    animation: middle-up-down 0.8s ease-in-out infinite;
+    animation-delay: 0s;
+}
+
+.animate-middle-up-down-2 {
+    animation: middle-up-down 0.8s ease-in-out infinite;
+    animation-delay: 0.2s; /* Starts when box 1 reaches top (25% of 0.8s) */
+}
+
+.animate-middle-up-down-3 {
+    animation: middle-up-down 0.8s ease-in-out infinite;
+    animation-delay: 0.4s; /* Starts when box 2 reaches top (0.2s + 0.2s) */
+}

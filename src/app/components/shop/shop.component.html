@@ -1,0 +1,9 @@
+<main>
+    <app-nav
+        (searchQuery)="onSearchQuery($event)"
+        (invalidQuery)="onInvalidQuery()"
+    ></app-nav>
+    <section><app-shop-list></app-shop-list></section>
+</main>
+
+<spartan-sonner-error></spartan-sonner-error>
