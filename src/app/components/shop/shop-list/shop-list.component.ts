@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { ProductComponent } from '../../product/product.component';
 import { Product } from '../../../models/product.model';
 import { ProductService } from '../../../services/product.service';
+import { SpartanSpinnerComponent } from '../../spartan-spinner/spartan-spinner.component';
 
 @Component({
     selector: 'app-shop-list',
-    imports: [ProductComponent],
+    imports: [ProductComponent, SpartanSpinnerComponent],
     templateUrl: './shop-list.component.html',
     styleUrl: './shop-list.component.css',
 })
