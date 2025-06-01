@@ -1,34 +1,16 @@
 import { Component } from '@angular/core';
-import {
-    ActivatedRoute,
-    RouterOutlet,
-    NavigationStart,
-    NavigationEnd,
-    Router,
-} from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { routeTransition } from '../route-transition';
-import { filter } from 'rxjs/operators';
+import { OverlayComponent } from './components/overlay/overlay.component';
 
 @Component({
     selector: 'app-root',
-    imports: [RouterOutlet],
+    imports: [RouterOutlet, OverlayComponent],
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
-    animations: [routeTransition],
+    animations: [],
 })
 export class AppComponent {
-    title = 'kaufy';
-
-    constructor(
-        protected route: ActivatedRoute,
-        private router: Router
-    ) {}
-
-    prepareRoute(outlet: RouterOutlet) {
-        return (
-            outlet &&
-            outlet.activatedRouteData &&
-            outlet.activatedRouteData['animation']
-        );
-    }
+    title: string = 'kaufy';
+    showLoading: boolean = false;
 }

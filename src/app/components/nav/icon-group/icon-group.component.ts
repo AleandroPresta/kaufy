@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { SearchBarComponent } from '../../search-bar/search-bar.component';
 import { RouterModule } from '@angular/router';
+import { OverlayService } from '../../../services/overlay.service';
 
 @Component({
     selector: 'app-icon-group',
@@ -9,6 +10,8 @@ import { RouterModule } from '@angular/router';
     styleUrl: './icon-group.component.css',
 })
 export class IconGroupComponent {
+    constructor(private overlayService: OverlayService) {}
+
     @Output() searchQuery: EventEmitter<string | undefined> = new EventEmitter<
         string | undefined
     >();
@@ -21,5 +24,9 @@ export class IconGroupComponent {
 
     onInvalidQuery(): void {
         this.invalidQuery.emit();
+    }
+
+    goToProfile() {
+        this.overlayService.transitionTo('/profile');
     }
 }
