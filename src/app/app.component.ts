@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { routeTransition } from '../route-transition';
-import { OverlayComponent } from './components/overlay/overlay.component';
 
 @Component({
     selector: 'app-root',
-    imports: [RouterOutlet, OverlayComponent],
+    imports: [RouterOutlet],
     templateUrl: './app.component.html',
     styleUrl: './app.component.css',
     animations: [],
