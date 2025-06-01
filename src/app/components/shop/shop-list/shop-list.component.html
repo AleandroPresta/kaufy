@@ -5,7 +5,11 @@
         Featured Products
     </h2>
     <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
-        @if (backendError) {
+        @if (loading) {
+            <div class="flex justify-center items-center pt-3 sm:pt-20">
+                <spartan-spinner></spartan-spinner>
+            </div>
+        } @else if (backendError) {
             <div
                 class="flex justify-center items-center text-red-500 text-md pt-3 sm:pt-20"
             >
@@ -13,6 +17,12 @@
                     There was an error in contacting the server. Please try
                     again in a few minutes.
                 </p>
+            </div>
+        } @else if (noProductFound) {
+            <div
+                class="flex justify-center items-center text-yellow-500 text-md pt-3 sm:pt-20"
+            >
+                <p>No products found matching your query.</p>
             </div>
         } @else {
             @for (product of productList; track $index) {
