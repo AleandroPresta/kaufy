@@ -44,3 +44,5 @@ Thumbs.db
 # The test backend server
 /backend/*
 .env
+# Local Netlify folder
+.netlify

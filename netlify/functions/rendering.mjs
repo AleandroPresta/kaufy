@@ -1,3 +1,5 @@
-import { reqHandler } from '../../dist/kaufy/server/server.mjs';
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
 
-export default reqHandler;
+// Import the Angular SSR request handler
+export { reqHandler as default } from '../../dist/kaufy/server/server.mjs';
