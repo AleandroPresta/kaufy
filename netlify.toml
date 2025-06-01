@@ -1,15 +1,14 @@
 [build]
-  publish = "dist/kaufy"
-  command = "npm run build"
+  publish = "dist/kaufy/browser"
+  command = "npm run build:ssr"
 
 [build.environment]
   NODE_VERSION = "20"
 
 [functions]
-  included_files = ["dist/kaufy/**"]
-
-[functions."rendering"]
+  external_node_modules = ["@angular/ssr", "express"]
   node_bundler = "nft"
+  included_files = ["dist/kaufy/**"]
 
 [[redirects]]
   from = "/*"
