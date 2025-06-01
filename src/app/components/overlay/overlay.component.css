@@ -32,6 +32,43 @@
     } /* Return to middle */
 }
 
+/* Progress bar animation - completes at the middle of the animation cycle */
+@keyframes progress-fill {
+    0% {
+        width: 0%;
+    }
+    50% {
+        width: 100%;
+    } /* Complete at middle when overlay fully covers */
+    100% {
+        width: 100%;
+    }
+}
+
+/* Progress bar glow animation */
+@keyframes progress-glow {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    25% {
+        opacity: 0.6;
+        transform: translateX(-50%);
+    }
+    50% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+    75% {
+        opacity: 0.6;
+        transform: translateX(50%);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
 /* Sequential animations - each box starts when previous reaches the top */
 .animate-middle-up-down-1 {
     animation: middle-up-down 0.8s ease-in-out infinite;
@@ -46,4 +83,15 @@
 .animate-middle-up-down-3 {
     animation: middle-up-down 0.8s ease-in-out infinite;
     animation-delay: 0.4s; /* Starts when box 2 reaches top (0.2s + 0.2s) */
+}
+
+/* Progress bar animations */
+.animate-progress-fill {
+    animation: progress-fill 2.4s ease-in-out infinite;
+    animation-delay: 0s; /* Start immediately with the first box */
+}
+
+.animate-progress-glow {
+    animation: progress-glow 2.4s ease-in-out infinite;
+    animation-delay: 0s; /* Synchronized with progress fill */
 }
