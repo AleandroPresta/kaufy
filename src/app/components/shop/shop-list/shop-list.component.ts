@@ -11,6 +11,7 @@ import { ProductService } from '../../../services/product.service';
 })
 export class ShopListComponent {
     productList: Product[] = [];
+    backendError: boolean = false; // This error appears when the backend is not running or connected properly
     constructor(private productService: ProductService) {
         this.productService.getProducts().subscribe({
             next: products => {
@@ -18,6 +19,7 @@ export class ShopListComponent {
             },
             error: error => {
                 console.error('Error fetching products:', error);
+                this.backendError = true;
             },
         });
     }
