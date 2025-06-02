@@ -10,6 +10,7 @@ import { Product } from '../../models/product.model';
 })
 export class ProductComponent {
     @Input() product: Product = {
+        id: 0,
         slug: 'default-product',
         name: 'Product Name',
         price: 0,
