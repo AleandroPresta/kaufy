@@ -9,8 +9,24 @@
     /* This means shifting left by the width of the left wave (0.05 of total new width). */
     left: calc(-0.05 * (100vw / 0.9)); /* Approx. -5.55vw */
     height: 100vh;
-    z-index: 50;
+    z-index: 999; /* Ensure overlay is above everything */
     clip-path: url(#overlayClipPath); /* Assumes #overlayClipPath is defined in overlay.component.html */
+    pointer-events: none; /* Allow clicks to pass through */
+    will-change: transform, opacity; /* Performance optimization */
+}
+
+:root {
+    --animation-duration: 0.8s; /* Default value, will be overridden by JS */
+    --animation-delay-1: 0s;
+    --animation-delay-2: calc(
+        var(--animation-duration) * 0.25
+    ); /* 25% of duration */
+    --animation-delay-3: calc(
+        var(--animation-duration) * 0.5
+    ); /* 50% of duration */
+    --progress-animation-duration: calc(
+        var(--animation-duration) * 3
+    ); /* 3x the main duration */
 }
 
 /* Animation that goes from middle → up → down → back to middle */
@@ -71,27 +87,33 @@
 
 /* Sequential animations - each box starts when previous reaches the top */
 .animate-middle-up-down-1 {
-    animation: middle-up-down 0.8s ease-in-out infinite;
-    animation-delay: 0s;
+    animation: middle-up-down var(--animation-duration) ease-in-out infinite;
+    animation-delay: var(--animation-delay-1);
 }
 
 .animate-middle-up-down-2 {
-    animation: middle-up-down 0.8s ease-in-out infinite;
-    animation-delay: 0.2s; /* Starts when box 1 reaches top (25% of 0.8s) */
+    animation: middle-up-down var(--animation-duration) ease-in-out infinite;
+    animation-delay: var(--animation-delay-2);
 }
 
 .animate-middle-up-down-3 {
-    animation: middle-up-down 0.8s ease-in-out infinite;
-    animation-delay: 0.4s; /* Starts when box 2 reaches top (0.2s + 0.2s) */
+    animation: middle-up-down var(--animation-duration) ease-in-out infinite;
+    animation-delay: var(--animation-delay-3);
 }
 
 /* Progress bar animations */
 .animate-progress-fill {
-    animation: progress-fill 2.4s ease-in-out infinite;
-    animation-delay: 0s; /* Start immediately with the first box */
+    animation: progress-fill var(--progress-animation-duration) ease-in-out
+        infinite;
+    animation-delay: var(
+        --animation-delay-1
+    ); /* Start immediately with the first box */
 }
 
 .animate-progress-glow {
-    animation: progress-glow 2.4s ease-in-out infinite;
-    animation-delay: 0s; /* Synchronized with progress fill */
+    animation: progress-glow var(--progress-animation-duration) ease-in-out
+        infinite;
+    animation-delay: var(
+        --animation-delay-1
+    ); /* Synchronized with progress fill */
 }
