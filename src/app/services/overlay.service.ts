@@ -19,8 +19,6 @@ import { OverlayComponent } from '../components/overlay/overlay.component';
     providedIn: 'root',
 })
 export class OverlayService {
-    private loadingTime: number = import.meta.env['NG_APP_LOADING_TIME'];
-
     private overlayRef!: ComponentRef<OverlayComponent>;
 
     private appRef = inject(ApplicationRef);
@@ -30,6 +28,13 @@ export class OverlayService {
         private builder: AnimationBuilder,
         private router: Router
     ) {}
+
+    private get loadingTime(): number {
+        const envValue = import.meta.env['NG_APP_LOADING_TIME'];
+        const duration = envValue ? parseInt(envValue, 10) : 1000; // Default to 1000ms if not set
+        console.log(`Overlay loading duration set to: ${duration}ms`);
+        return duration;
+    }
 
     transitionTo(targetRoute: string): void {
         this.createOverlay();
