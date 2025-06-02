@@ -7,5 +7,10 @@
         <p>There was an error in contacting the server: {{ error }}</p>
     </div>
 } @else {
-    <p>product-page works!</p>
+    <p>ID: {{ product?.id }}</p>
+    <p>Document ID: {{ product?.documentId }}</p>
+    <p>Slug: {{ product?.slug }}</p>
+    <p>Name: {{ product?.name }}</p>
+    <p>Price: {{ product?.price | currency }}</p>
+    <p>Picture URL: {{ product?.picture_url }}</p>
 }

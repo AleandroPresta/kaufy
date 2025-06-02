@@ -3,10 +3,11 @@ import { Product } from '../../../models/product.model';
 import { SpartanSpinnerComponent } from '../../spartan-spinner/spartan-spinner.component';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../../services/product.service';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
     selector: 'app-product-page',
-    imports: [SpartanSpinnerComponent],
+    imports: [SpartanSpinnerComponent, CurrencyPipe],
     standalone: true,
     templateUrl: './product-page.component.html',
     styleUrl: './product-page.component.css',
@@ -42,20 +43,17 @@ export class ProductPageComponent implements OnInit {
         // Fetch product details from the API
         this.productService.getProductById(documentId).subscribe({
             next: (response: any) => {
-                console.log('API Response:', response);
                 if (!response['data']) {
                     this.error = 'Product not found'; // Set error if no data is returned
-                    this.loading = false; // Set loading to false if no data is returned
                 } else {
                     this.product = response['data'];
-                    console.log('Product loaded successfully:', this.product);
                 }
+                this.loading = false; // Set loading to false after fetching product
             },
             error: err => {
                 this.error = 'Error fetching product'; // Set error if fetching fails
                 this.loading = false; // Set loading to false if fetching fails
             },
         });
-        console.log('this.product', this.product);
     }
 }
