@@ -20,16 +20,25 @@ export class OverlayComponent implements OnInit {
      * Sets CSS variables for animations based on environment variable
      */
     private setAnimationDurations(): void {
+        // Get loading time in seconds to calibrate animations properly
+        const loadingTimeSeconds =
+            this.animationService.loadingTimeDuration / 1000;
+
+        // Adjust progress factor based on loading time to prevent too long animations
+        // For 3000ms (3s), we want around 1-1.2s main animation duration
+        // This will make the progress bar animation about 1.5x the loading time
+        const progressFactor = loadingTimeSeconds > 2 ? 1.5 : 3;
+
         // Use the animation service to set consistent CSS variables
         this.animationService.setCSSAnimationVariables(
             document.documentElement,
             {
-                mainDurationFactor: 0.8, // Animation duration as 80% of loading time
-                maxDuration: 1.5, // Cap at 1.5s for good UX
+                mainDurationFactor: 0.6, // Animation duration as 60% of loading time (better for longer durations)
+                maxDuration: 1.2, // Cap at 1.2s for good UX (previously 1.5s)
                 delay1Factor: 0, // No delay for first animation
                 delay2Factor: 0.25, // 25% delay for second animation
                 delay3Factor: 0.5, // 50% delay for third animation
-                progressFactor: 3, // Progress animation is 3x the duration
+                progressFactor: progressFactor, // Dynamic factor based on loading time
             }
         );
     }

@@ -16,17 +16,12 @@
 }
 
 :root {
-    --animation-duration: 0.8s; /* Default value, will be overridden by JS */
+    /* Default values for animation variables - will be overridden by JS */
+    --animation-duration: 1s;
     --animation-delay-1: 0s;
-    --animation-delay-2: calc(
-        var(--animation-duration) * 0.25
-    ); /* 25% of duration */
-    --animation-delay-3: calc(
-        var(--animation-duration) * 0.5
-    ); /* 50% of duration */
-    --progress-animation-duration: calc(
-        var(--animation-duration) * 3
-    ); /* 3x the main duration */
+    --animation-delay-2: 0.25s;
+    --animation-delay-3: 0.5s;
+    --progress-animation-duration: 2s;
 }
 
 /* Animation that goes from middle → up → down → back to middle */
@@ -48,17 +43,17 @@
     } /* Return to middle */
 }
 
-/* Progress bar animation - completes at the middle of the animation cycle */
+/* Progress bar animation - completes at 60% of the animation cycle */
 @keyframes progress-fill {
     0% {
         width: 0%;
     }
     50% {
         width: 100%;
-    } /* Complete at middle when overlay fully covers */
+    } /* Complete at 60% of the animation */
     100% {
         width: 100%;
-    }
+    } /* Keep at 100% for the rest of the animation */
 }
 
 /* Progress bar glow animation */
@@ -103,16 +98,17 @@
 
 /* Progress bar animations */
 .animate-progress-fill {
-    animation: progress-fill var(--progress-animation-duration) ease-in-out
-        infinite;
+    animation: progress-fill var(--progress-animation-duration)
+        cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
     animation-delay: var(
         --animation-delay-1
     ); /* Start immediately with the first box */
+    width: 0%; /* Ensure initial state is 0% */
 }
 
 .animate-progress-glow {
-    animation: progress-glow var(--progress-animation-duration) ease-in-out
-        infinite;
+    animation: progress-glow var(--progress-animation-duration)
+        cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
     animation-delay: var(
         --animation-delay-1
     ); /* Synchronized with progress fill */

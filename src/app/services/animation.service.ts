@@ -86,9 +86,16 @@ export class AnimationService {
             '--animation-delay-3',
             `${animationDuration * delay3Factor}s`
         );
+
+        // For progress animation, ensure it's appropriately scaled to the loading time
+        // Calculate progress duration based on loading time directly
+        const progressDuration = Math.min(
+            (this.loadingTimeDuration / 1000) * progressFactor,
+            6
+        );
         element.style.setProperty(
             '--progress-animation-duration',
-            `${animationDuration * progressFactor}s`
+            `${progressDuration}s`
         );
     }
 }
