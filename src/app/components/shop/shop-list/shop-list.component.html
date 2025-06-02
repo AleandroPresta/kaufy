@@ -27,7 +27,7 @@
         } @else {
             @for (product of productList; track $index) {
                 <app-product
-                    (click)="navigateToProduct(product)"
+                    (click)="goToProduct(product)"
                     [product]="product"
                 ></app-product>
             }

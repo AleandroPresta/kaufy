@@ -33,7 +33,7 @@ export class ShopListComponent {
         this.loading = false; // Set loading to false after the request completes
     }
 
-    navigateToProduct(product: Product): void {
+    goToProduct(product: Product): void {
         // Navigate to the product details page
         console.table(product);
     }
