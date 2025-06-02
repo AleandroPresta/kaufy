@@ -7,7 +7,7 @@ import { ProductPageComponent } from './components/product/product-page/product-
 export const routes: Routes = [
     { path: '', redirectTo: '/shop', pathMatch: 'full' },
     { path: 'shop', component: ShopComponent, data: { animation: 'ShopPage' } },
-    { path: 'shop/:slug', component: ProductPageComponent },
+    { path: 'shop/:id', component: ProductPageComponent },
     {
         path: 'profile',
         component: ProfileComponent,
