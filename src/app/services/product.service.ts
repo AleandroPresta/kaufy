@@ -22,13 +22,16 @@ export class ProductService {
         });
     }
 
-    getProductById(id: number): Observable<Product> {
+    getProductById(documentId: string): Observable<Product> {
         const headers = new HttpHeaders({
             Authorization: `Bearer ${this.apiToken}`,
         });
 
-        return this.httpClient.get<Product>(`${this.apiUrl}/products/${id}`, {
-            headers,
-        });
+        return this.httpClient.get<Product>(
+            `${this.apiUrl}/products/${documentId}`,
+            {
+                headers,
+            }
+        );
     }
 }
