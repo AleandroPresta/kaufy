@@ -18,7 +18,9 @@ export class ShopListComponent {
     constructor(private productService: ProductService) {
         this.loading = true; // Initialize loading to true
         this.productService.getProducts().subscribe({
-            next: products => {
+            next: (response: any) => {
+                const products: any = response['data'];
+                console.table(products);
                 this.productList = products;
             },
             error: error => {
