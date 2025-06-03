@@ -27,7 +27,7 @@ export class ShopListComponent {
                 this.backendError = true;
             },
             complete: () => {
-                if (this.productList.length === 0) {
+                if (this.productList && this.productList.length === 0) {
                     this.noProductFound = true;
                 }
             },
