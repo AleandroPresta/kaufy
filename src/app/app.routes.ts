@@ -6,7 +6,7 @@ import { ProductPageComponent } from './components/product/product-page/product-
 
 export const routes: Routes = [
     { path: '', redirectTo: '/shop', pathMatch: 'full' },
-    { path: 'shop', component: ShopComponent },
+    { path: 'shop', component: ShopComponent, data: { prerender: false } },
     {
         path: 'shop/:documentId',
         component: ProductPageComponent,
