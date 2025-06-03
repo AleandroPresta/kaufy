@@ -9,8 +9,19 @@
     /* This means shifting left by the width of the left wave (0.05 of total new width). */
     left: calc(-0.05 * (100vw / 0.9)); /* Approx. -5.55vw */
     height: 100vh;
-    z-index: 50;
+    z-index: 999; /* Ensure overlay is above everything */
     clip-path: url(#overlayClipPath); /* Assumes #overlayClipPath is defined in overlay.component.html */
+    pointer-events: none; /* Allow clicks to pass through */
+    will-change: transform, opacity; /* Performance optimization */
+}
+
+:root {
+    /* Default values for animation variables - will be overridden by JS */
+    --animation-duration: 1s;
+    --animation-delay-1: 0s;
+    --animation-delay-2: 0.25s;
+    --animation-delay-3: 0.5s;
+    --progress-animation-duration: 2s;
 }
 
 /* Animation that goes from middle → up → down → back to middle */
@@ -32,17 +43,17 @@
     } /* Return to middle */
 }
 
-/* Progress bar animation - completes at the middle of the animation cycle */
+/* Progress bar animation - completes at 60% of the animation cycle */
 @keyframes progress-fill {
     0% {
         width: 0%;
     }
     50% {
         width: 100%;
-    } /* Complete at middle when overlay fully covers */
+    } /* Complete at 60% of the animation */
     100% {
         width: 100%;
-    }
+    } /* Keep at 100% for the rest of the animation */
 }
 
 /* Progress bar glow animation */
@@ -71,27 +82,34 @@
 
 /* Sequential animations - each box starts when previous reaches the top */
 .animate-middle-up-down-1 {
-    animation: middle-up-down 0.8s ease-in-out infinite;
-    animation-delay: 0s;
+    animation: middle-up-down var(--animation-duration) ease-in-out infinite;
+    animation-delay: var(--animation-delay-1);
 }
 
 .animate-middle-up-down-2 {
-    animation: middle-up-down 0.8s ease-in-out infinite;
-    animation-delay: 0.2s; /* Starts when box 1 reaches top (25% of 0.8s) */
+    animation: middle-up-down var(--animation-duration) ease-in-out infinite;
+    animation-delay: var(--animation-delay-2);
 }
 
 .animate-middle-up-down-3 {
-    animation: middle-up-down 0.8s ease-in-out infinite;
-    animation-delay: 0.4s; /* Starts when box 2 reaches top (0.2s + 0.2s) */
+    animation: middle-up-down var(--animation-duration) ease-in-out infinite;
+    animation-delay: var(--animation-delay-3);
 }
 
 /* Progress bar animations */
 .animate-progress-fill {
-    animation: progress-fill 2.4s ease-in-out infinite;
-    animation-delay: 0s; /* Start immediately with the first box */
+    animation: progress-fill var(--progress-animation-duration)
+        cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    animation-delay: var(
+        --animation-delay-1
+    ); /* Start immediately with the first box */
+    width: 0%; /* Ensure initial state is 0% */
 }
 
 .animate-progress-glow {
-    animation: progress-glow 2.4s ease-in-out infinite;
-    animation-delay: 0s; /* Synchronized with progress fill */
+    animation: progress-glow var(--progress-animation-duration)
+        cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    animation-delay: var(
+        --animation-delay-1
+    ); /* Synchronized with progress fill */
 }

@@ -1,7 +1,4 @@
-<!--<div class="router-container" [@routeTransition]="prepareRoute(outlet)">
-    <router-outlet #outlet="outlet"></router-outlet>
-</div> -->
-
+<!-- Only include one router-outlet to prevent duplicate content -->
 <div class="router-container">
     <router-outlet #outlet="outlet"></router-outlet>
 </div>

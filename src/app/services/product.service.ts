@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from '../models/product.model';
 import { Observable } from 'rxjs';
@@ -8,10 +8,30 @@ import { Observable } from 'rxjs';
 })
 export class ProductService {
     apiUrl = import.meta.env['NG_APP_API_URL'];
+    apiToken = import.meta.env['NG_APP_API_TOKEN'];
 
     constructor(private httpClient: HttpClient) {}
 
     getProducts(): Observable<Product[]> {
-        return this.httpClient.get<Product[]>(`${this.apiUrl}/products`);
+        const headers = new HttpHeaders({
+            Authorization: `Bearer ${this.apiToken}`,
+        });
+
+        return this.httpClient.get<Product[]>(`${this.apiUrl}/products`, {
+            headers,
+        });
+    }
+
+    getProductById(documentId: string): Observable<Product> {
+        const headers = new HttpHeaders({
+            Authorization: `Bearer ${this.apiToken}`,
+        });
+
+        return this.httpClient.get<Product>(
+            `${this.apiUrl}/products/${documentId}`,
+            {
+                headers,
+            }
+        );
     }
 }

@@ -10,9 +10,11 @@ import { Product } from '../../models/product.model';
 })
 export class ProductComponent {
     @Input() product: Product = {
+        id: 0,
+        documentId: '',
+        slug: 'default-product',
         name: 'Product Name',
         price: 0,
-        image_url: 'https://placehold.co/150x150/png?text=Product+Image',
-        description: 'Product Description',
+        picture_url: 'https://placehold.co/150x150/png?text=Product+Image',
     };
 }

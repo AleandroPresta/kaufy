@@ -1,0 +1,16 @@
+@if (loading) {
+    <div class="flex justify-center items-center p-3">
+        <spartan-spinner></spartan-spinner>
+    </div>
+} @else if (error) {
+    <div class="flex justify-center items-center text-red-500 text-md p-3">
+        <p>There was an error in contacting the server: {{ error }}</p>
+    </div>
+} @else {
+    <p>ID: {{ product?.id }}</p>
+    <p>Document ID: {{ product?.documentId }}</p>
+    <p>Slug: {{ product?.slug }}</p>
+    <p>Name: {{ product?.name }}</p>
+    <p>Price: {{ product?.price | currency }}</p>
+    <p>Picture URL: {{ product?.picture_url }}</p>
+}
