@@ -13,7 +13,7 @@
                     class="hvr-grow"
                 ></app-product>
             }
-        } @loading (after 1s; minimum 1s) {
+        } @loading (minimum 1500ms) {
             <img alt="loading..." src="loading.gif" />
         } @error {
             <div
