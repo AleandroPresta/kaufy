@@ -3,11 +3,11 @@ import { ProductComponent } from '../../product/product.component';
 import { Product } from '../../../models/product.model';
 import { ProductService } from '../../../services/product.service';
 import { SpartanSpinnerComponent } from '../../spartan-spinner/spartan-spinner.component';
-import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-shop-list',
-    imports: [ProductComponent, SpartanSpinnerComponent],
+    imports: [ProductComponent, SpartanSpinnerComponent, RouterLink],
     templateUrl: './shop-list.component.html',
     styleUrl: './shop-list.component.css',
 })
@@ -16,10 +16,7 @@ export class ShopListComponent {
     backendError: boolean = false; // This error appears when the backend is not running or connected properly
     noProductFound: boolean = false; // This error appears when the backend is running but no products are found with the user query
     loading: boolean = true; // This is used to show a loading spinner while the products are being fetched
-    constructor(
-        private productService: ProductService,
-        private router: Router
-    ) {
+    constructor(private productService: ProductService) {
         this.loading = true; // Initialize loading to true
         this.productService.getProducts().subscribe({
             next: (response: any) => {
@@ -30,16 +27,11 @@ export class ShopListComponent {
                 this.backendError = true;
             },
             complete: () => {
-                if (this.productList.length === 0) {
+                if (this.productList && this.productList.length === 0) {
                     this.noProductFound = true;
                 }
             },
         });
         this.loading = false; // Set loading to false after the request completes
-    }
-
-    goToProduct(productId: string): void {
-        // Navigate to the product details page
-        this.router.navigate(['/shop', productId]);
     }
 }

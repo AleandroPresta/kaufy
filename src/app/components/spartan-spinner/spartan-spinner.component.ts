@@ -5,6 +5,6 @@ import { HlmSpinnerComponent } from '@spartan-ng/ui-spinner-helm';
     selector: 'spartan-spinner',
     standalone: true,
     imports: [HlmSpinnerComponent],
-    template: ` <hlm-spinner /> `,
+    templateUrl: './spartan-spinner.component.html',
 })
 export class SpartanSpinnerComponent {}
