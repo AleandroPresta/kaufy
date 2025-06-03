@@ -4,8 +4,10 @@
     >
         Featured Products
     </h2>
-    <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
-        @defer {
+    @defer {
+        <div
+            class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4"
+        >
             @for (product of productList; track $index) {
                 <app-product
                     [routerLink]="['/shop', product.documentId]"
@@ -13,17 +15,21 @@
                     class="hvr-grow"
                 ></app-product>
             }
-        } @loading (minimum 1500ms) {
-            <img alt="loading..." src="loading.gif" />
-        } @error {
-            <div
-                class="flex justify-center items-center text-red-500 text-md pt-3 sm:pt-20"
-            >
-                <p>
-                    There was an error in contacting the server. Please try
-                    again in a few minutes.
-                </p>
-            </div>
-        }
-    </div>
+        </div>
+    } @loading (minimum 1500ms) {
+        <div
+            class="flex justify-center items-center w-full h-full min-h-[300px]"
+        >
+            <spartan-spinner></spartan-spinner>
+        </div>
+    } @error {
+        <div
+            class="flex justify-center items-center text-red-500 text-md pt-3 sm:pt-20"
+        >
+            <p>
+                There was an error in contacting the server. Please try again in
+                a few minutes.
+            </p>
+        </div>
+    }
 </div>
