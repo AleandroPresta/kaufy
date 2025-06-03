@@ -27,8 +27,9 @@
         } @else {
             @for (product of productList; track $index) {
                 <app-product
-                    (click)="goToProduct(product.documentId)"
+                    [routerLink]="['/shop', product.documentId]"
                     [product]="product"
+                    class="hover:cursor:pointer"
                 ></app-product>
             }
         }
