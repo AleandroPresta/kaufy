@@ -6,14 +6,14 @@ import { ProductPageComponent } from './components/product/product-page/product-
 
 export const routes: Routes = [
     { path: '', redirectTo: '/shop', pathMatch: 'full' },
-    { path: 'shop', component: ShopComponent, data: { animation: 'ShopPage' } },
-    { path: 'shop/:documentId', component: ProductPageComponent },
+    { path: 'shop', component: ShopComponent },
     {
-        path: 'profile',
-        component: ProfileComponent,
-        data: { animation: 'ProfilePage' },
+        path: 'shop/:documentId',
+        component: ProductPageComponent,
+        data: { renderMode: 'client' },
     },
-    { path: 'cart', component: CartComponent, data: { animation: 'CartPage' } },
+    { path: 'profile', component: ProfileComponent },
+    { path: 'cart', component: CartComponent },
 
     // Fallback route
     { path: '**', redirectTo: '/shop' },
