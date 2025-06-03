@@ -25,11 +25,7 @@ export class ShopListComponent {
             },
             error: error => {
                 this.backendError = true;
-            },
-            complete: () => {
-                if (this.productList && this.productList.length === 0) {
-                    this.noProductFound = true;
-                }
+                console.error('Error fetching products:', error);
             },
         });
         this.loading = false; // Set loading to false after the request completes
