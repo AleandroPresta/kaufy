@@ -1,28 +1,49 @@
 <div class="flex flex-col sm:flex-row">
     <img
         src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS7xTRaM0BG85TZZ2i77ar_k8mR8VBIaWL2bpy6FGsP6YTljkaOe7JVAbzvXoSwUy9mq5i5VmhrW3NEsEzIfxiU4PDMp6_qJs5PPG7CN3Ri47iMKrpT-pzORqS-WriAqSwcqY-DV78GmaECvjquamughuQxk3ceA58z-fac5n5zaaM9_bEI-8uXn9zzqzCW-zV0PyuRRsP2R0iT8jxpXgAFcLop8OPKe_GTWeNQA3lvOHEHFHj-rj158QfpOdVKGAUKK9LCSC5fYA"
+        class="rounded-2xl object-contain max-w-full h-auto sm:px-3"
     />
-    <div>
-        <h1 class="font-bold tracking-[-0.015em] px-4 text-left pb-3 pt-5">
-            Hydrating Face Serum
-        </h1>
-        <p class="text-base font-normal leading-normal pb-3 pt-1 px-4">
-            This serum is formulated with hyaluronic acid and vitamin C to
-            provide deep hydration and brighten the skin. Suitable for all skin
-            types.
-        </p>
-    </div>
-    <div class="flex flex-row md:flex-row">
+    <div class="flex flex-col justify-between px-4 py-3">
         <div>
-            <h3
-                class="text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4"
-            >
-                Price
-            </h3>
+            <h1 class="font-bold tracking-[-0.015em] px-4 text-left pb-3 pt-5">
+                Hydrating Face Serum
+            </h1>
             <p class="text-base font-normal leading-normal pb-3 pt-1 px-4">
-                $29.99
+                This serum is formulated with hyaluronic acid and vitamin C to
+                provide deep hydration and brighten the skin. Suitable for all
+                skin types.
             </p>
         </div>
-        <app-rating></app-rating>
+        <div class="flex flex-row md:flex-row justify-around">
+            <div>
+                <h3
+                    class="text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4"
+                >
+                    Price
+                </h3>
+                <p class="text-base font-normal leading-normal pb-3 pt-1 px-4">
+                    $29.99
+                </p>
+            </div>
+            <app-rating></app-rating>
+        </div>
+        <div class="flex flex-col sm:flex-row">
+            <div
+                class="flex flex-col sm:flex-row justify-between sm:items-center"
+            >
+                <h3 class="text-lg font-bold px-4 pb-2">Quantity</h3>
+                <div
+                    class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3"
+                >
+                    <label class="flex flex-col min-w-40 flex-1">
+                        <input
+                            class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#121416] focus:outline-0 focus:ring-0 border border-[#dde1e3] bg-white focus:border-[#dde1e3] h-14 placeholder:text-[#6a7681] p-[15px] text-base font-normal leading-normal"
+                            value=""
+                        />
+                    </label>
+                </div>
+            </div>
+            <cart-button></cart-button>
+        </div>
     </div>
 </div>
