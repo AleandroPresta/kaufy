@@ -4,10 +4,21 @@ import { SpartanSpinnerComponent } from '../../spartan-spinner/spartan-spinner.c
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../../services/product.service';
 import { CurrencyPipe } from '@angular/common';
+import { RatingComponent } from './rating/rating.component';
+import { CartButtonComponent } from './cart-button/cart-button.component';
+import { ArrowLeftComponent } from './arrow-left/arrow-left.component';
+import { ShareComponent } from './share/share.component';
 
 @Component({
     selector: 'app-product-page',
-    imports: [SpartanSpinnerComponent, CurrencyPipe],
+    imports: [
+        SpartanSpinnerComponent,
+        CurrencyPipe,
+        RatingComponent,
+        CartButtonComponent,
+        ArrowLeftComponent,
+        ShareComponent,
+    ],
     standalone: true,
     templateUrl: './product-page.component.html',
     styleUrl: './product-page.component.css',
