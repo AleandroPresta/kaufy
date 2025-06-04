@@ -8,16 +8,17 @@ import { RatingComponent } from './rating/rating.component';
 import { CartButtonComponent } from './cart-button/cart-button.component';
 import { ArrowLeftComponent } from './arrow-left/arrow-left.component';
 import { ShareComponent } from './share/share.component';
+import { ProductDescriptionComponent } from './product-description/product-description.component';
 
 @Component({
     selector: 'app-product-page',
     imports: [
         SpartanSpinnerComponent,
         CurrencyPipe,
-        RatingComponent,
         CartButtonComponent,
         ArrowLeftComponent,
         ShareComponent,
+        ProductDescriptionComponent,
     ],
     standalone: true,
     templateUrl: './product-page.component.html',
