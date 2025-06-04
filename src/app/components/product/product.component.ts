@@ -16,5 +16,7 @@ export class ProductComponent {
         name: 'Product Name',
         price: 0,
         picture_url: 'https://placehold.co/150x150/png?text=Product+Image',
+        description: 'This is a default product description.',
+        rating: 0,
     };
 }
