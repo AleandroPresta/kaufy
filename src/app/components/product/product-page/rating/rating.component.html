@@ -6,7 +6,7 @@
         </p>
         <div class="flex gap-0.5">
             @for (i of starCount; track $index) {
-                <app-star></app-star>
+                <app-star [filled]="i === 1"></app-star>
             }
         </div>
     </div>
