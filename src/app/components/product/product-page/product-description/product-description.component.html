@@ -6,12 +6,10 @@
     <div class="flex flex-col justify-between px-4 py-3">
         <div>
             <h1 class="font-bold tracking-[-0.015em] px-4 text-left pb-3 pt-5">
-                Hydrating Face Serum
+                {{ product?.name }}
             </h1>
             <p class="text-base font-normal leading-normal pb-3 pt-1 px-4">
-                This serum is formulated with hyaluronic acid and vitamin C to
-                provide deep hydration and brighten the skin. Suitable for all
-                skin types.
+                {{ product?.description }}
             </p>
         </div>
         <div class="flex flex-row md:flex-row justify-around">
@@ -20,10 +18,10 @@
                     Price
                 </h3>
                 <p class="text-4xl font-black leading-tight pb-3 pt-1 px-4">
-                    $29.99
+                    {{ product?.price | currency }}
                 </p>
             </div>
-            <app-rating></app-rating>
+            <app-rating [rating]="product?.rating"></app-rating>
         </div>
         <cart-button></cart-button>
     </div>

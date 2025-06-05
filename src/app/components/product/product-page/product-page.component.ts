@@ -14,8 +14,6 @@ import { ProductDescriptionComponent } from './product-description/product-descr
     selector: 'app-product-page',
     imports: [
         SpartanSpinnerComponent,
-        CurrencyPipe,
-        CartButtonComponent,
         ArrowLeftComponent,
         ShareComponent,
         ProductDescriptionComponent,

@@ -1,5 +1,5 @@
-<!-- @if (loading) {
-    <div class="flex justify-center items-center w-full h-full min-h-[300px]">
+@if (loading) {
+    <div class="flex justify-center items-center w-full h-full min-h-[100vh]">
         <spartan-spinner></spartan-spinner>
     </div>
 } @else if (error) {
@@ -12,24 +12,15 @@
         </p>
     </div>
 } @else if (product) {
-    <div class="product-details">
-        <p>ID: {{ product.id }}</p>
-        <p>Document ID: {{ product.documentId }}</p>
-        <p>Slug: {{ product.slug }}</p>
-        <p>Name: {{ product.name }}</p>
-        <p>Price: {{ product.price | currency }}</p>
-        <p>Picture URL: {{ product.picture_url }}</p>
-        <p>Description: {{ product.description }}</p>
-        <p>Rating: {{ product.rating }}</p>
-    </div>
-} -->
-
-<div class="flex flex-col justify-between">
-    <div>
-        <div class="flex items-center p-4 justify-between">
-            <arrow-left-button></arrow-left-button>
-            <share-button></share-button>
+    <div class="flex flex-col justify-between">
+        <div>
+            <div class="flex items-center p-4 justify-between">
+                <arrow-left-button></arrow-left-button>
+                <share-button></share-button>
+            </div>
+            <app-product-description
+                [product]="product"
+            ></app-product-description>
         </div>
-        <app-product-description></app-product-description>
     </div>
-</div>
+}
