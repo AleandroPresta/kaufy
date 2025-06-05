@@ -4,10 +4,20 @@ import { SpartanSpinnerComponent } from '../../spartan-spinner/spartan-spinner.c
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../../services/product.service';
 import { CurrencyPipe } from '@angular/common';
+import { RatingComponent } from './rating/rating.component';
+import { CartButtonComponent } from './cart-button/cart-button.component';
+import { ArrowLeftComponent } from './arrow-left/arrow-left.component';
+import { ShareComponent } from './share/share.component';
+import { ProductDescriptionComponent } from './product-description/product-description.component';
 
 @Component({
     selector: 'app-product-page',
-    imports: [SpartanSpinnerComponent, CurrencyPipe],
+    imports: [
+        SpartanSpinnerComponent,
+        ArrowLeftComponent,
+        ShareComponent,
+        ProductDescriptionComponent,
+    ],
     standalone: true,
     templateUrl: './product-page.component.html',
     styleUrl: './product-page.component.css',
@@ -15,8 +25,8 @@ import { CurrencyPipe } from '@angular/common';
 export class ProductPageComponent implements OnInit {
     documentId: string = ''; // product ID for fetching product details
     product?: Product;
-    error: string = ''; // This error appears when the product is not found or there is an issue with the product data
     loading: boolean = true; // This is used to show a loading spinner while the product data is being fetched
+    error: string = ''; // This error appears when the product is not found or there is an issue with the product data
 
     constructor(
         private productService: ProductService,
@@ -29,6 +39,11 @@ export class ProductPageComponent implements OnInit {
             this.documentId = params['documentId'];
             console.log('Product ID from route:', this.documentId);
 
+            // Reset states when route changes
+            this.loading = true;
+            this.error = '';
+            this.product = undefined;
+
             // Fetch product with the correct ID
             this.fetchProduct(this.documentId);
         });
@@ -36,23 +51,25 @@ export class ProductPageComponent implements OnInit {
 
     fetchProduct(documentId?: string): void {
         if (!documentId) {
-            this.error = 'Invalid product ID'; // Set error if no product ID is provided
-            this.loading = false; // Set loading to false if no product ID
+            this.error = 'Invalid product ID';
+            this.loading = false;
             return;
         }
+
         // Fetch product details from the API
         this.productService.getProductById(documentId).subscribe({
             next: (response: any) => {
-                if (!response['data']) {
-                    this.error = 'Product not found'; // Set error if no data is returned
-                } else {
+                if (response['data']) {
                     this.product = response['data'];
+                } else {
+                    this.error = 'Product not found';
                 }
-                this.loading = false; // Set loading to false after fetching product
+                this.loading = false;
             },
             error: err => {
-                this.error = 'Error fetching product'; // Set error if fetching fails
-                this.loading = false; // Set loading to false if fetching fails
+                console.error('Error fetching product:', err);
+                this.error = 'Error fetching product';
+                this.loading = false;
             },
         });
     }
