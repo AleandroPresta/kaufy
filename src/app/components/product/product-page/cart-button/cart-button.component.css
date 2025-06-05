@@ -1,0 +1,9 @@
+/* Fix hover animation to respect rounded corners */
+.hvr-sweep-to-top:before {
+    border-radius: 9999px !important;
+}
+
+/* Ensure the button maintains its shape during animation */
+.hvr-sweep-to-top {
+    overflow: hidden;
+}
