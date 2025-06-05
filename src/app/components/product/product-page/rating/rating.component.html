@@ -1,0 +1,15 @@
+<div class="flex flex-wrap gap-x-8 gap-y-6 p-4">
+    <div class="flex flex-col gap-2">
+        <p class="text-[var(--color-neutral-700)] font-bold">Rating</p>
+        <p
+            class="text-[var(--color-accent-300)] text-4xl font-black leading-tight tracking-[-0.033em]"
+        >
+            {{ rating }}
+        </p>
+        <div class="flex gap-0.5">
+            @for (i of starCount; track $index) {
+                <app-star [filled]="i === 1"></app-star>
+            }
+        </div>
+    </div>
+</div>
